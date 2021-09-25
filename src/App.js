@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "semantic-ui-react";
 
 import "./App.css";
@@ -10,10 +10,10 @@ import NewEntryForm from "./components/NewEntryForm";
 import ModalEdit from "./components/ModalEdit";
 
 var initialEntries = [
-  { id: 1, description: "Work Income", value: "$100,0", isExpense: false },
-  { id: 2, description: "Water Bill", value: "$20,0", isExpense: true },
-  { id: 3, description: "Rent", value: "$300,0", isExpense: true },
-  { id: 4, description: "Power Bill", value: "$50,0", isExpense: true },
+  { id: 1, description: "Work Income", value: 100, isExpense: false },
+  { id: 2, description: "Water Bill", value: 200, isExpense: true },
+  { id: 3, description: "Rent", value: 300, isExpense: true },
+  { id: 4, description: "Power Bill", value: 5, isExpense: true },
 ];
 function App() {
   const [entries, setEntries] = useState(initialEntries);
@@ -22,6 +22,44 @@ function App() {
   const [value, setValue] = useState("");
   const [isExpense, setIsExpense] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [entryId, setEntryID] = useState();
+  const [incomeTotal, setIncomeTotal] = useState();
+  const [expenseTotal, setExpenseTotal] = useState();
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    if (!isOpen && entryId) {
+      const index = entries.findIndex((entry) => entry.id === entryId);
+      const newEntries = [...entries];
+      newEntries[index].description = description;
+      newEntries[index].value = value;
+      newEntries[index].isExpense = isExpense;
+      setEntries(newEntries);
+      resetEntry();
+    }
+    //eslint-disable-next-line
+  }, [isOpen]);
+
+  useEffect(() => {
+    let totalIncomes = 0;
+    let totalExpense = 0;
+    entries.map((entry) => {
+      if (entry.isExpense) {
+        return (totalExpense += Number(entry.value));
+      } else {
+        return (totalIncomes += Number(entry.value));
+      }
+    });
+    setTotal(totalIncomes - totalExpense);
+    setExpenseTotal(totalExpense);
+    setIncomeTotal(totalIncomes);
+    //eslint-disable-next-line
+  }, [entries]);
+
+  function resetEntry() {
+    setValue("");
+    setDescription("s");
+  }
 
   const deleteEntry = (id) => {
     const result = entries.filter((entry) => entry.id !== id);
@@ -36,12 +74,14 @@ function App() {
       isExpense,
     });
     setEntries(result);
+    resetEntry();
   }
 
   function editEntry(id) {
     if (id) {
       const index = entries.findIndex((entry) => entry.id === id);
       const entry = entries[index];
+      setEntryID(id);
       setDescription(entry.description);
       setValue(entry.value);
       setIsExpense(entry.isExpense);
@@ -53,8 +93,8 @@ function App() {
   return (
     <Container>
       <MainHeader title="Budget" />
-      <DisplayBalance title="Your Balance" value="2,550" />
-      <DisplayBalances />
+      <DisplayBalance title="Your Balance" value={total} />
+      <DisplayBalances incomeTotal={incomeTotal} expenseTotal={expenseTotal} />
       <MainHeader type="h3" title="History" />
       <EntryLines
         entries={entries}
