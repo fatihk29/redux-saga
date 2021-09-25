@@ -58,7 +58,7 @@ function App() {
 
   function resetEntry() {
     setValue("");
-    setDescription("s");
+    setDescription("");
   }
 
   const deleteEntry = (id) => {
@@ -67,12 +67,14 @@ function App() {
   };
 
   function addEntry(description, value, isExpense) {
+    console.log("addEntry", description, value, isExpense);
     const result = entries.concat({
       id: entries.length + 1,
       description,
       value,
       isExpense,
     });
+    console.log(result);
     setEntries(result);
     resetEntry();
   }
