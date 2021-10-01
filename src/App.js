@@ -106,7 +106,7 @@ function App() {
         isExpense={isExpense}
         setIsExpense={setIsExpense}
       />
-      <ReactSpeedometer />
+      <ReactSpeedometer value={100} />
     </Container>
   );
 }
