@@ -8,6 +8,7 @@ import EntryLines from "./components/EntryLines";
 import MainHeader from "./components/MainHeader";
 import NewEntryForm from "./components/NewEntryForm";
 import ModalEdit from "./components/ModalEdit";
+import ReactSpeedometer from "./speedometer/index";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -105,6 +106,7 @@ function App() {
         isExpense={isExpense}
         setIsExpense={setIsExpense}
       />
+      <ReactSpeedometer />
     </Container>
   );
 }
