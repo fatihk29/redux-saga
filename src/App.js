@@ -106,7 +106,14 @@ function App() {
         isExpense={isExpense}
         setIsExpense={setIsExpense}
       />
-      <ReactSpeedometer value={100} />
+      {/* <ReactSpeedometer
+        value={100}
+        minValue={0}
+        maxValue={300}
+        width={400}
+        height={300}
+        maxSegmentLabels={10}
+      /> */}
     </Container>
   );
 }

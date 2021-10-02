@@ -12,26 +12,19 @@ export const DEFAULT_PROPS = {
   value: 0,
   minValue: 0,
   maxValue: 1000,
-
   forceRender: false,
-
   width: 300,
   height: 300,
   paddingHorizontal: 0,
   paddingVertical: 0,
-
   fluidWidth: false,
   dimensionUnit: "px",
-
-  // segments to show in the speedometer
   segments: 5,
   // maximum segment label to be shown
   maxSegmentLabels: -1,
   customSegmentStops: [],
-
   // custom segment labels
   customSegmentLabels: [],
-
   // color strings
   needleColor: "steelblue",
   startColor: "#FF471A",
