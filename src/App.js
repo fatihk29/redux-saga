@@ -8,30 +8,22 @@ import EntryLines from "./components/EntryLines";
 import MainHeader from "./components/MainHeader";
 import NewEntryForm from "./components/NewEntryForm";
 import ModalEdit from "./components/ModalEdit";
-import ReactSpeedometer from "./speedometer/index";
+// import ReactSpeedometer from "./speedometer/index";
 
 function App() {
-  const [description, setDescription] = useState("");
-  const [value, setValue] = useState("");
-  const [isExpense, setIsExpense] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [entryId, setEntryID] = useState();
   const [incomeTotal, setIncomeTotal] = useState();
   const [expenseTotal, setExpenseTotal] = useState();
   const [total, setTotal] = useState();
+  const [entry, setEntry] = useState();
+  const { isOpen, id } = useSelector((state) => state.modals);
   const entries = useSelector((state) => state.entries);
 
   useEffect(() => {
-    if (!isOpen && entryId) {
-      const index = entries.findIndex((entry) => entry.id === entryId);
-      const newEntries = [...entries];
-      newEntries[index].description = description;
-      newEntries[index].value = value;
-      newEntries[index].isExpense = isExpense;
-      resetEntry();
-    }
-    //eslint-disable-next-line
-  }, [isOpen]);
+    const index = entries.findIndex((entry) => entry.id === id);
+
+    setEntry(entries[index]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, id]);
 
   useEffect(() => {
     let totalIncomes = 0;
@@ -49,63 +41,17 @@ function App() {
     //eslint-disable-next-line
   }, [entries]);
 
-  function resetEntry() {
-    setValue("");
-    setDescription("");
-  }
-
-  function addEntry(description, value, isExpense) {
-    const result = entries.concat({
-      id: entries.length + 1,
-      description,
-      value,
-      isExpense,
-    });
-    console.log(result);
-    resetEntry();
-  }
-
-  function editEntry(id) {
-    if (id) {
-      const index = entries.findIndex((entry) => entry.id === id);
-      const entry = entries[index];
-      setEntryID(id);
-      setDescription(entry.description);
-      setValue(entry.value);
-      setIsExpense(entry.isExpense);
-      setIsOpen(true);
-    }
-  }
-
   return (
     <Container>
       <MainHeader title="Budget" />
       <DisplayBalance title="Your Balance" value={total} />
       <DisplayBalances incomeTotal={incomeTotal} expenseTotal={expenseTotal} />
       <MainHeader type="h3" title="History" />
-      <EntryLines entries={entries} editEntry={editEntry} />
+      <EntryLines entries={entries} editEntry />
 
       <MainHeader type="h3" title="Add New Transaction" />
-      <NewEntryForm
-        addEntry={addEntry}
-        description={description}
-        value={value}
-        setValue={setValue}
-        setDescription={setDescription}
-        isExpense={isExpense}
-        setIsExpense={setIsExpense}
-      />
-      <ModalEdit
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        addEntry={addEntry}
-        description={description}
-        value={value}
-        setValue={setValue}
-        setDescription={setDescription}
-        isExpense={isExpense}
-        setIsExpense={setIsExpense}
-      />
+      <NewEntryForm />
+      <ModalEdit isOpen={isOpen} {...entry} />
       {/* <ReactSpeedometer
         value={100}
         minValue={0}
