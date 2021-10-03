@@ -6,6 +6,7 @@ var initialEntries = [
 ];
 
 const reducer = (state = initialEntries, action) => {
+  console.log("reducer");
   let newEntries;
   switch (action.type) {
     case "ADD_ENTRY":

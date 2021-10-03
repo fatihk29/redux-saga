@@ -25,10 +25,10 @@
       "isExpense": true
     },
     {
-      "id": 5,
-      "description": "postman",
-      "value": 20000,
-      "isExpense": true
+      "description": "postman2",
+      "value": 1001,
+      "isExpense": false,
+      "id": 5
     },
     {
       "id": 6,
