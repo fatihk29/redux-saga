@@ -12,7 +12,29 @@
       "value": 200,
       "isExpense": true
     },
-    { "id": 3, "description": "Rent a car", "value": 300, "isExpense": true },
-    { "id": 4, "description": "Power Bill", "value": 5, "isExpense": true }
+    {
+      "id": 3,
+      "description": "Rent a car",
+      "value": 300,
+      "isExpense": true
+    },
+    {
+      "id": 4,
+      "description": "Power Bill",
+      "value": 5,
+      "isExpense": true
+    },
+    {
+      "id": 5,
+      "description": "postman",
+      "value": 20000,
+      "isExpense": true
+    },
+    {
+      "id": 6,
+      "description": "postman2",
+      "value": 100,
+      "isExpense": false
+    }
   ]
 }
