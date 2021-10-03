@@ -5,7 +5,7 @@ import { closeEditModal } from "../actions/modals.actions";
 import useEntryDetails from "../hooks/useEntryDetails";
 import EntryForm from "./EntryForm";
 
-function ModalEdit({ isOpen, description, value, isExpense }) {
+function ModalEdit({ isOpen, description, value, isExpense, id }) {
   const dispath = useDispatch();
   const entryUpdate = useEntryDetails(description, value, isExpense);
   return (
@@ -24,7 +24,7 @@ function ModalEdit({ isOpen, description, value, isExpense }) {
       </Modal.Content>
       <Modal.Actions>
         <Button onClick={() => dispath(closeEditModal())}>Close</Button>
-        <Button onClick={() => dispath(closeEditModal())} positive>
+        <Button onClick={() => entryUpdate.updateEntry(id)} positive>
           OK
         </Button>
       </Modal.Actions>
