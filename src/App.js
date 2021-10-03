@@ -47,7 +47,7 @@ function App() {
       <DisplayBalance title="Your Balance" value={total} />
       <DisplayBalances incomeTotal={incomeTotal} expenseTotal={expenseTotal} />
       <MainHeader type="h3" title="History" />
-      <EntryLines entries={entries} editEntry />
+      <EntryLines entries={entries} />
 
       <MainHeader type="h3" title="Add New Transaction" />
       <NewEntryForm />
@@ -65,3 +65,5 @@ function App() {
 }
 
 export default App;
+
+// npx json-server --watch db.json
