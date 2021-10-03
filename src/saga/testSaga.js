@@ -1,4 +1,4 @@
-import { take } from "redux-saga/effects";
+import { take, delay, put } from "redux-saga/effects";
 
 export function* testSaga() {
   while (true) {
@@ -8,10 +8,9 @@ export function* testSaga() {
   }
 }
 
-export function* count() {
-  console.log("ss");
-  yield 1;
-  yield 2;
-  yield 3;
-  yield 4;
+export function* dispatchTest() {
+  //   while (true) {
+  //     yield delay(100);
+  //     yield put({ type: "TEST_MESSAGE1" });
+  //   }
 }

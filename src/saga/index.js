@@ -1,5 +1,5 @@
-import * as testSaga from "./testSaga";
-console.log("2", Object.values({ a: 2, b: 3 }));
+import * as entries from "./entriesSaga";
+
 export function initSaga(sagaMiddleware) {
-  Object.values(testSaga).forEach(sagaMiddleware.run.bind(sagaMiddleware));
+  Object.values(entries).forEach(sagaMiddleware.run.bind(sagaMiddleware));
 }

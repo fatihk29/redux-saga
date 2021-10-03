@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container } from "semantic-ui-react";
 
 import DisplayBalance from "./components/DisplayBalance";
@@ -8,7 +8,9 @@ import EntryLines from "./components/EntryLines";
 import MainHeader from "./components/MainHeader";
 import NewEntryForm from "./components/NewEntryForm";
 import ModalEdit from "./components/ModalEdit";
+// import axios from "axios";
 // import ReactSpeedometer from "./speedometer/index";
+import { getAllEntries } from "./actions/entries.actions";
 
 function App() {
   const [incomeTotal, setIncomeTotal] = useState();
@@ -20,10 +22,19 @@ function App() {
 
   useEffect(() => {
     const index = entries.findIndex((entry) => entry.id === id);
-
     setEntry(entries[index]);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, id, entries]);
+
+  // async function fetchInitialData() {
+  //   const result = await axios.get("http://localhost:3001/entries");
+  //   console.log("result", result);
+  // }
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllEntries());
+  }, []);
 
   useEffect(() => {
     let totalIncomes = 0;

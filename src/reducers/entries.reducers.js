@@ -1,21 +1,16 @@
-var initialEntries = [
-  { id: 1, description: "Work Income redux", value: 800, isExpense: false },
-  { id: 2, description: "Water Bill redux", value: 200, isExpense: true },
-  { id: 3, description: "Rent", value: 300, isExpense: true },
-  { id: 4, description: "Power Bill", value: 5, isExpense: true },
-];
+import entriesTypes from "../actions/entries.actions";
+var initialEntries = [];
 
 const reducer = (state = initialEntries, action) => {
-  console.log("reducer");
   let newEntries;
   switch (action.type) {
-    case "ADD_ENTRY":
+    case entriesTypes.ADD_ENTRY:
       newEntries = state.concat({ ...action.payload });
       return newEntries;
-    case "REMOVE_ENTRY":
+    case entriesTypes.REMOVE_ENTRY:
       newEntries = state.filter((entry) => entry.id !== action.payload);
       return newEntries;
-    case "UPDATE_ENTRY":
+    case entriesTypes.UPDATE_ENTRY:
       newEntries = [...state];
       const index = newEntries.findIndex(
         (entry) => entry.id === action.payload.id
