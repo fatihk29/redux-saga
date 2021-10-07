@@ -15,7 +15,10 @@ function App() {
   const [expenseTotal, setExpenseTotal] = useState();
   const [total, setTotal] = useState();
   const [entry, setEntry] = useState();
-  const { isOpen, id } = useSelector((state) => state.modals);
+  const { isOpen, id } = useSelector((state) => {
+    console.log("state", state);
+    return state.modals;
+  });
   const entries = useSelector((state) => state.entries);
 
   useEffect(() => {
