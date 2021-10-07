@@ -19,6 +19,7 @@ export function updateEntryRedux(id, entry) {
 }
 
 export function getAllEntries() {
+  console.log("22", "actions");
   return { type: types.GET_ENTRIES };
 }
 

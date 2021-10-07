@@ -8,8 +8,6 @@ import EntryLines from "./components/EntryLines";
 import MainHeader from "./components/MainHeader";
 import NewEntryForm from "./components/NewEntryForm";
 import ModalEdit from "./components/ModalEdit";
-// import axios from "axios";
-// import ReactSpeedometer from "./speedometer/index";
 import { getAllEntries } from "./actions/entries.actions";
 
 function App() {
@@ -63,14 +61,6 @@ function App() {
       <MainHeader type="h3" title="Add New Transaction" />
       <NewEntryForm />
       <ModalEdit isOpen={isOpen} {...entry} />
-      {/* <ReactSpeedometer
-        value={100}
-        minValue={0}
-        maxValue={300}
-        width={400}
-        height={300}
-        maxSegmentLabels={10}
-      /> */}
     </Container>
   );
 }
