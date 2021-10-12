@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Segment } from "semantic-ui-react";
 import DisplayBalance from "./DisplayBalance";
-
+// a
 function DisplayBalances({ incomeTotal, expenseTotal }) {
   return (
     <Segment textAlign="center">
