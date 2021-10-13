@@ -1,4 +1,4 @@
-import { take, delay, put } from "redux-saga/effects";
+import { take } from "redux-saga/effects";
 
 export function* testSaga() {
   while (true) {
