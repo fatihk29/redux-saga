@@ -16,7 +16,6 @@ function App() {
   const [total, setTotal] = useState();
   const [entry, setEntry] = useState();
   const { isOpen, id } = useSelector((state) => {
-    console.log("state", state);
     return state.modals;
   });
   const entries = useSelector((state) => state.entries);
