@@ -27,11 +27,6 @@ function App() {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, id, entries]);
 
-  // async function fetchInitialData() {
-  //   const result = await axios.get("http://localhost:3001/entries");
-  //   console.log("result", result);
-  // }
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllEntries());
