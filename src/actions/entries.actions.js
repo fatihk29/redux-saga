@@ -25,3 +25,6 @@ export function getAllEntries() {
 export function populateEntries(entries) {
   return { type: types.POPULATE_ENTRIES, payload: entries };
 }
+export const populateEntryDetail = (entryDetails) => {
+  return { type: types.POPULATE_ENTRIES, payload: entryDetails };
+};
