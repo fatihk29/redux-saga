@@ -15,12 +15,16 @@ export function* getEntryDetails(id) {
   console.log(`got the id ${id}`);
   const { data } = yield call(axios, `http://localhost:3001/values/${id}`);
   console.log("data", data);
+  yield put({
+    type: entriesTypes.POPULATE_ENTRY_DETAILS,
+    payload: { id, entry: data },
+  });
 }
 
 export function* getAllEntriesDetails() {
   const { payload } = yield take(entriesTypes.POPULATE_ENTRIES);
   console.log("length", payload);
-  for (let index = 0; index < payload.length - 1; ++index) {
+  for (let index = 0; index < payload.length - 2; ++index) {
     const entry = payload[index];
     yield fork(getEntryDetails, entry.id);
   }
