@@ -14,6 +14,7 @@ export function addEntryRedux(payload) {
 export function removeEntryRedux(payload) {
   return { type: types.REMOVE_ENTRY, payload };
 }
+
 export function updateEntryRedux(id, entry) {
   return { type: types.UPDATE_ENTRY, payload: { id, entry } };
 }
