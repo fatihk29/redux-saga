@@ -34,8 +34,8 @@ function App() {
   useEffect(() => {
     let totalIncomes = 0;
     let totalExpense = 0;
-    entries.map((entry) => {
-      if (entry.isExpense) {
+    entries?.map((entry) => {
+      if (entry?.isExpense) {
         return (totalExpense += Number(entry.value));
       } else {
         return (totalIncomes += Number(entry.value));

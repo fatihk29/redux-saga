@@ -5,7 +5,7 @@ import EntryLine from "./EntryLine";
 function EntryLines({ entries }) {
   return (
     <Container>
-      {entries.map((item, index) => {
+      {entries?.map((item, index) => {
         return <EntryLine key={index + item.id} {...item} />;
       })}
     </Container>
